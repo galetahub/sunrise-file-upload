@@ -1,0 +1,5 @@
+= SunRise CMS: File uploader
+
+== Install
+
+  rails generate sunrise:file_upload:install
