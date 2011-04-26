@@ -1,30 +1,24 @@
 require 'rails/generators'
-require 'fileutils'
 
 module Sunrise
   module Generators
     module FileUpload
       class InstallGenerator < Rails::Generators::Base
-        desc "This generator downloads and installs jQuery-File-Upload"
+        desc "This generator downloads and installs FileUploader"
         source_root File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
         
-        def create_directory
-          FileUtils.mkdir_p( Rails.root.join('public', 'javascripts', 'fileupload') )
+        def copy_javascripts
+          copy_file "fileuploader-input.js", 'public/javascripts/fileupload/fileuploader-input.js'
         end
         
         def download_stylesheet
-          say_status("fetching jquery.fileupload-ui.css", "", :green)
-          get "https://github.com/blueimp/jQuery-File-Upload/raw/master/jquery.fileupload-ui.css", "public/javascripts/fileupload/jquery.fileupload-ui.css"
+          say_status("fetching fileuploader.css", "", :green)
+          get "https://github.com/galetahub/file-uploader/raw/master/client/fileuploader.css", "public/javascripts/fileupload/fileuploader.css"
         end
         
         def download_fileupload
-          say_status("fetching jquery.fileupload.js", "", :green)
-          get "https://github.com/blueimp/jQuery-File-Upload/raw/master/jquery.fileupload.js", "public/javascripts/fileupload/jquery.fileupload.js"          
-        end
-        
-        def download_fileupload_ui
-          say_status("fetching jquery.fileupload-ui.js", "", :green)
-          get "https://github.com/blueimp/jQuery-File-Upload/raw/master/jquery.fileupload-ui.js", "public/javascripts/fileupload/jquery.fileupload-ui.js"
+          say_status("fetching fileuploader.js", "", :green)
+          get "https://github.com/galetahub/file-uploader/raw/master/client/fileuploader.js", "public/javascripts/fileupload/fileuploader.js"
         end
       end
     end

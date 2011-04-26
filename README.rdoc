@@ -3,3 +3,8 @@
 == Install
 
   rails generate sunrise:file_upload:install
+
+=== Views
+
+  <%= stylesheet_link_tag "fileupload/jquery.fileupload-ui.css" %>
+  <%= javascript_include_tag :fileupload %>

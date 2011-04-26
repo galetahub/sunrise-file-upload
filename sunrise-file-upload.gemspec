@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Igor Galeta", "Pavlo Galeta"]
-  s.date = %q{2011-04-19}
+  s.date = %q{2011-04-26}
   s.description = %q{Sunrise is a Aimbulance CMS}
   s.email = %q{galeta.igor@gmail.com}
   s.extra_rdoc_files = [
@@ -20,9 +20,17 @@ Gem::Specification.new do |s|
     "Rakefile",
     "lib/generators/sunrise/file_upload/USAGE",
     "lib/generators/sunrise/file_upload/install_generator.rb",
+    "lib/generators/sunrise/file_upload/templates/fileuploader-input.js",
     "lib/sunrise-file-upload.rb",
     "lib/sunrise/file_upload.rb",
-    "lib/sunrise/file_upload/version.rb"
+    "lib/sunrise/file_upload/active_record.rb",
+    "lib/sunrise/file_upload/engine.rb",
+    "lib/sunrise/file_upload/form_builder.rb",
+    "lib/sunrise/file_upload/qq_file.rb",
+    "lib/sunrise/file_upload/raw_upload.rb",
+    "lib/sunrise/file_upload/request.rb",
+    "lib/sunrise/file_upload/version.rb",
+    "lib/sunrise/file_upload/view_helper.rb"
   ]
   s.homepage = %q{https://github.com/galetahub/sunrise-file-upload}
   s.require_paths = ["lib"]
