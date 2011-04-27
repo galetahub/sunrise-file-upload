@@ -19,9 +19,8 @@ module Sunrise
             include InstanceMethods
             extend ClassMethods
             
-            attr_writer :fileupload_guid
-            
-            after_save :update_fileuploads
+            attr_accessible :fileupload_guid
+            after_save :fileuploads_update, :if => :fileupload_changed?
             
             args.each do |asset|
               accepts_nested_attributes_for asset, :allow_destroy => true
@@ -32,9 +31,9 @@ module Sunrise
       
       module ClassMethods
         # Update reflection klass by guid
-        def update_fileupload(record_id, guid, method)
-          klass = self.class.reflections[method.to_sym].klass
-          klass.update_all(["assetable_type = ? AND guid = ?", name, guid], ["assetable_id = ?, guid = ?", record_id, nil])
+        def fileupload_update(record_id, guid, method)
+          klass = reflections[method.to_sym].klass
+          klass.update_all(["assetable_id = ?, guid = ?", record_id, nil], ["assetable_type = ? AND guid = ?", name, guid])
         end
       end
       
@@ -44,11 +43,20 @@ module Sunrise
           @fileupload_guid ||= Sunrise::FileUpload.guid
         end
         
+        def fileupload_guid=(value)
+          @fileupload_changed = true unless value.blank?
+          @fileupload_guid = value.blank? ? nil : value
+        end
+        
+        def fileupload_changed?
+          @fileupload_changed
+        end
+        
         protected
         
-          def update_fileuploads
+          def fileuploads_update
             self.class.fileuploads_columns.each do |method|
-              self.class.update_fileupload(id, fileupload_guid, method)
+              self.class.fileupload_update(id, fileupload_guid, method)
             end
           end
       end

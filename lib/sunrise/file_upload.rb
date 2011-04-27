@@ -11,7 +11,7 @@ module Sunrise
     autoload :FormBuilder, 'sunrise/file_upload/form_builder'
     
     def self.guid
-      ActiveSupport::SecureRandom.base64(15).tr('+/=', 'xyz')
+      ActiveSupport::SecureRandom.base64(15).tr('+/=', 'xyz').slice(0, 10)
     end
   end
 end
