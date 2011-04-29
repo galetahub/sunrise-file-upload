@@ -32,20 +32,22 @@ module Sunrise
                 f.file_field :data
               end
             end
-          end + javascript_tag( fileupload_script(element_id, script_options) )
+          end + javascript_tag( fileupload_script(element_id, value, script_options) )
         end
       end
       
       protected
       
-        def fileupload_script(element_id, options = {})
+        def fileupload_script(element_id, value = nil, options = {})
           options = { 'element' => element_id }.merge(options)
-          
           formatted_options = options.inspect.gsub('=>', ':')
+          js = [ "new qq.FileUploaderInput(#{formatted_options});" ]
           
-          "$(document).ready(function(){
-            new qq.FileUploaderInput(#{formatted_options});
-           });"
+          if value && !value.new_record?
+            js << "qq.FileUploader.instances['#{element_id}']._updatePreview(#{value.to_json});"
+          end
+          
+          "$(document).ready(function(){ #{js.join} });"
         end
       
     end

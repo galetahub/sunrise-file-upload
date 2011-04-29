@@ -51,18 +51,13 @@ module Sunrise
         def find_asset(klass, params)
           query = klass.scoped
           
-          unless params[:assetable_id].blank?
+          unless params[:assetable_id].blank? || params[:assetable_type].blank?
             query = query.where(:assetable_id => params[:assetable_id].to_i)
-          end
-          
-          unless params[:assetable_type].blank?
             query = query.where(:assetable_type => params[:assetable_type])
-          end
-          
-          unless params[:guid].blank?
+          else
             query = query.where(:guid => params[:guid])
           end
-          
+                    
           query.first
         end
         
