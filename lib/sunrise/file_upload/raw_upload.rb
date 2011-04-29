@@ -26,7 +26,7 @@ module Sunrise
         asset = find_asset(klass, params) || klass.new(params[:asset])
     
       	asset.assetable_type = params[:assetable_type]
-		    asset.assetable_id = params[:assetable_id] || 0
+		    asset.assetable_id = params[:assetable_id].blank? ? 0 : params[:assetable_id].to_i
 		    asset.guid = params[:guid]
       	asset.data = QqFile.new(params[:qqfile], request)
       	asset.user = env['warden'].user if env['warden']
