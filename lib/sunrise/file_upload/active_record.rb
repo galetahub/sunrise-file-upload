@@ -13,7 +13,7 @@ module Sunrise
           self.fileuploads_options = options
           
           class_attribute :fileuploads_columns, :instance_writer => false
-          self.fileuploads_columns = args
+          self.fileuploads_columns = args.map(&:to_sym)
           
           unless self.is_a?(ClassMethods)
             include InstanceMethods
@@ -32,9 +32,21 @@ module Sunrise
       module ClassMethods
         # Update reflection klass by guid
         def fileupload_update(record_id, guid, method)
-          klass = reflections[method.to_sym].klass
+          klass = fileupload_klass(method)
           klass.update_all(["assetable_id = ?, guid = ?", record_id, nil], ["assetable_type = ? AND guid = ?", name, guid])
         end
+        
+        # Find asset by guid
+        def fileupload_find(method, guid)
+          klass = fileupload_klass(method)
+          klass.where(:guid => guid).first
+        end
+        
+        protected
+          
+          def fileupload_klass(method)
+            reflections[method.to_sym].klass
+          end
       end
       
       module InstanceMethods
@@ -52,10 +64,27 @@ module Sunrise
           @fileupload_changed
         end
         
+        def fileupload_multiple?(method)
+          association = self.class.reflect_on_association(method)
+          association.collection? 
+        end
+        
+        # Find or build new asset object
+        def fileupload_asset(method)
+          if fileuploads_columns.include?(method.to_sym)
+            asset = new_record? ? self.class.fileupload_find(method, fileupload_guid) : send(method)
+            asset ||= send("build_#{method}") if respond_to?("build_#{method}")
+          end
+        end
+        
+        def fileuploads_columns
+          self.class.fileuploads_columns
+        end
+        
         protected
         
           def fileuploads_update
-            self.class.fileuploads_columns.each do |method|
+            fileuploads_columns.each do |method|
               self.class.fileupload_update(id, fileupload_guid, method)
             end
           end
