@@ -29,7 +29,7 @@ module Sunrise
         	asset.assetable_type = params[:assetable_type]
 		      asset.assetable_id = params[:assetable_id].blank? ? 0 : params[:assetable_id].to_i
 		      asset.guid = params[:guid]
-        	asset.data = QqFile.new(params[:qqfile], request)
+        	asset.data = Http.normalize_param(params[:qqfile], request)
           
           _run_callbacks(:before_create, env, asset)
           
@@ -43,7 +43,7 @@ module Sunrise
             status = 422
           end
           
-          [status, {'Content-Type' => 'application/json', 'Content-Length' => body.size.to_s}, body]
+          [status, {'Content-Type' => 'text/html', 'Content-Length' => body.size.to_s}, body]
         end
       
         def find_klass(params)

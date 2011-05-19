@@ -27,8 +27,8 @@ Gem::Specification.new do |s|
     "lib/sunrise/file_upload/callbacks.rb",
     "lib/sunrise/file_upload/engine.rb",
     "lib/sunrise/file_upload/form_builder.rb",
+    "lib/sunrise/file_upload/http.rb",
     "lib/sunrise/file_upload/manager.rb",
-    "lib/sunrise/file_upload/qq_file.rb",
     "lib/sunrise/file_upload/request.rb",
     "lib/sunrise/file_upload/version.rb",
     "lib/sunrise/file_upload/view_helper.rb"

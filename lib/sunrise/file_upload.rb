@@ -2,7 +2,7 @@ require 'active_support/secure_random'
 
 module Sunrise
   module FileUpload
-    autoload :QqFile, 'sunrise/file_upload/qq_file'
+    autoload :Http, 'sunrise/file_upload/http'
     autoload :Manager, 'sunrise/file_upload/manager'
     autoload :Request, 'sunrise/file_upload/request'
     autoload :ActiveRecord, 'sunrise/file_upload/active_record'
