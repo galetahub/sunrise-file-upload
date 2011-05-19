@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Igor Galeta", "Pavlo Galeta"]
-  s.date = %q{2011-05-18}
+  s.authors = [%q{Igor Galeta}, %q{Pavlo Galeta}]
+  s.date = %q{2011-05-19}
   s.description = %q{Sunrise is a Aimbulance CMS}
   s.email = %q{galeta.igor@gmail.com}
   s.extra_rdoc_files = [
@@ -24,17 +24,18 @@ Gem::Specification.new do |s|
     "lib/sunrise-file-upload.rb",
     "lib/sunrise/file_upload.rb",
     "lib/sunrise/file_upload/active_record.rb",
+    "lib/sunrise/file_upload/callbacks.rb",
     "lib/sunrise/file_upload/engine.rb",
     "lib/sunrise/file_upload/form_builder.rb",
+    "lib/sunrise/file_upload/manager.rb",
     "lib/sunrise/file_upload/qq_file.rb",
-    "lib/sunrise/file_upload/raw_upload.rb",
     "lib/sunrise/file_upload/request.rb",
     "lib/sunrise/file_upload/version.rb",
     "lib/sunrise/file_upload/view_helper.rb"
   ]
   s.homepage = %q{https://github.com/galetahub/sunrise-file-upload}
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.2}
   s.summary = %q{Rails FileUpload}
 
   if s.respond_to? :specification_version then

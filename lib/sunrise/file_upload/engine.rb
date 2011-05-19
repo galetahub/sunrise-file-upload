@@ -5,7 +5,7 @@ module Sunrise
   module FileUpload
     class Engine < ::Rails::Engine
       # Initialize Rack file upload
-      config.app_middleware.use Sunrise::FileUpload::RawUpload, :paths => "/sunrise/fileupload"
+      config.app_middleware.use Sunrise::FileUpload::Manager, :paths => "/sunrise/fileupload"
     
       config.before_initialize do
         ActiveSupport.on_load :active_record do

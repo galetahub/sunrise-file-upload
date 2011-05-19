@@ -4,7 +4,13 @@
 
   rails generate sunrise:file_upload:install
 
-=== Views
+== Callbacks
+
+  Sunrise::FileUpload::Manager.before_create do |env, asset|
+    asset.user = env['warden'].user if env['warden']
+  end
+
+== Views
 
   <%= stylesheet_link_tag "fileupload/jquery.fileupload-ui.css" %>
   <%= javascript_include_tag :fileupload %>
