@@ -26,13 +26,11 @@ module Sunrise
         script_options['allowedExtensions'] ||=  ['jpg', 'jpeg', 'png', 'gif']
         script_options['multiple'] ||= object.fileupload_multiple?(method)
         
-        content_tag(:div, :class => 'fileupload') do
-          content_tag(:div, :id => element_id) do
-            content_tag(:noscript) do
-              fields_for object do |form|
-                form.fields_for method, value do |f|
-                  f.file_field :data
-                end
+        content_tag(:div, :class => 'fileupload', :id => element_id) do
+          content_tag(:noscript) do
+            fields_for object do |form|
+              form.fields_for method, value do |f|
+                f.file_field :data
               end
             end
           end + javascript_tag( fileupload_script(element_id, value, script_options) )
