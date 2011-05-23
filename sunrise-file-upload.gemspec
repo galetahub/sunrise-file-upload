@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sunrise-file-upload}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Igor Galeta}, %q{Pavlo Galeta}]
-  s.date = %q{2011-05-19}
+  s.authors = ["Igor Galeta", "Pavlo Galeta"]
+  s.date = %q{2011-05-23}
   s.description = %q{Sunrise is a Aimbulance CMS}
   s.email = %q{galeta.igor@gmail.com}
   s.extra_rdoc_files = [
@@ -34,8 +34,8 @@ Gem::Specification.new do |s|
     "lib/sunrise/file_upload/view_helper.rb"
   ]
   s.homepage = %q{https://github.com/galetahub/sunrise-file-upload}
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.2}
+  s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Rails FileUpload}
 
   if s.respond_to? :specification_version then

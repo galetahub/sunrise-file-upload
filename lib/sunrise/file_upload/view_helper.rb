@@ -16,7 +16,7 @@ module Sunrise
         script_options = (options.delete(:script) || {}).stringify_keys
         
         params = {
-          :klass => value.class.name, 
+          :method => method, 
           :assetable_id => object.new_record? ? nil : object.id, 
           :assetable_type => object.class.name,
           :guid => element_guid

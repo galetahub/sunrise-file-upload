@@ -74,6 +74,7 @@ module Sunrise
           if fileuploads_columns.include?(method.to_sym)
             asset = new_record? ? self.class.fileupload_find(method, fileupload_guid) : send(method)
             asset ||= send("build_#{method}") if respond_to?("build_#{method}")
+            asset
           end
         end
         
