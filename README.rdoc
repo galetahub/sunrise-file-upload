@@ -28,8 +28,8 @@ Find asset by foreign key or guid:
 
 === Views
 
-  <%= stylesheet_link_tag "fileupload/jquery.fileupload-ui.css" %>
-  <%= javascript_include_tag :fileupload %>
+  <%= stylesheet_link_tag "/javascripts/fileupload/fileuploader.css" %>
+  <%= javascript_include_tag :fileupload, "jquery.tmpl.min" %>
   
   <%= form.fileupload :picture %>
   <%= form.hidden_field :fileupload_guid if form.object.new_record? %>
@@ -41,3 +41,5 @@ Find asset by foreign key or guid:
       <ul class="fileupload-list" style="display:none;"></ul>
     </div>
   </script>
+
+Copyright (c) 2011 Aimbulance, released under the MIT license

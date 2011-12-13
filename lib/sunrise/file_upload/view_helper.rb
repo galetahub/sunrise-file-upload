@@ -44,8 +44,11 @@ module Sunrise
           formatted_options = options.inspect.gsub('=>', ':')
           js = [ "new qq.FileUploaderInput(#{formatted_options});" ]
           
-          if value && !value.new_record?
-            js << "qq.FileUploader.instances['#{element_id}']._updatePreview(#{value.to_json});"
+          if value 
+            Array.wrap(value).each do |asset|
+              next unless asset.persisted?
+              js << "qq.FileUploader.instances['#{element_id}']._updatePreview(#{asset.to_json});"
+            end
           end
           
           "$(document).ready(function(){ #{js.join} });"
