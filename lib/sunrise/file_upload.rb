@@ -1,4 +1,4 @@
-require 'active_support/secure_random'
+require 'securerandom'
 
 module Sunrise
   module FileUpload
@@ -12,7 +12,7 @@ module Sunrise
     autoload :FormBuilder, 'sunrise/file_upload/form_builder'
     
     def self.guid
-      ActiveSupport::SecureRandom.base64(15).tr('+/=', 'xyz').slice(0, 10)
+      SecureRandom.base64(15).tr('+/=', 'xyz').slice(0, 10)
     end
   end
 end

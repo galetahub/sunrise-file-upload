@@ -1,7 +1,0 @@
-Usage:
-  rails generate sunrise:file_upload:install
-
-Options:
-                 
-Example:
-  rails g sunrise:file_upload:install

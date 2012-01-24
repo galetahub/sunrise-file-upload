@@ -2,7 +2,7 @@
 
 == Install
 
-  rails generate sunrise:file_upload:install
+  gem "sunrise-file-upload"
 
 == Callbacks
 
@@ -28,8 +28,8 @@ Find asset by foreign key or guid:
 
 === Views
 
-  <%= stylesheet_link_tag "/javascripts/fileupload/fileuploader.css" %>
-  <%= javascript_include_tag :fileupload, "jquery.tmpl.min" %>
+  <%= stylesheet_link_tag "fileupload/application" %>
+  <%= javascript_include_tag "fileupload/application", "jquery.tmpl.min" %>
   
   <%= form.fileupload :picture %>
   <%= form.hidden_field :fileupload_guid if form.object.new_record? %>
